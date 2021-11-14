@@ -7,9 +7,9 @@ namespace Jensen_Inlämning_1
     public class Board
     {
         char[,] matrix = {
-            {'1','2','3' },
-            {'4','5','6' },
-            {'7','8','9' }
+            {' ',' ',' ' },
+            {' ',' ',' ' },
+            {' ',' ',' ' }
         };
         
 

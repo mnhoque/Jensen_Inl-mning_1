@@ -47,11 +47,19 @@ namespace Jensen_Inlämning_1
             //       1, 9
             //      );
             //}
+            if (board.checkForWinner(color))
+            {
+                Console.WriteLine("Congratulation "+players[currentPlayerIndex]+" You won");
+                return;
+            }
+            if (board.CheckForTie())
+            {
+                Console.WriteLine("Game is Draw. Try for the next time");
+                return;
+            }
 
-
-
-            Console.ReadLine();
             currentPlayerIndex = currentPlayerIndex == 0 ? 1 : 0;
+
             StartGame();
         }
     }
