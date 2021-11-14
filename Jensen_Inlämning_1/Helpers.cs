@@ -22,7 +22,7 @@ namespace Jensen_Inlämning_1
             int answer = min - 1;
             while(answer < min || answer > max)
             {
-                Console.WriteLine("\n"+question);
+                Console.WriteLine($"\n {question} ({min}-{max})");
                 bool okParse = int.TryParse(Console.ReadLine(), out answer);
 
                 if (!okParse)
