@@ -28,8 +28,28 @@ namespace Jensen_Inlämning_1
             //board.PlacePiece('X', 1, 1);
             //board.PlacePiece('0', 2, 2);
             board.Render();
+            char color = currentPlayerIndex == 0 ? 'X' : 'O';
+            int position;
+            do
+            {
+                position = Helpers.AskForNumber(
+                    "Your turn [" + color + "] " +
+                    players[currentPlayerIndex] + " !",
+                    1, 9
+                   );
+            } while (board.PlacePiece(color, position)!=true);
 
-            int position = Helpers.AskForNumber("Your turn " + players[currentPlayerIndex]+" !",1,9);
+            //while ((board.PlacePiece(color, position)) == true)
+            //{
+            //    position = Helpers.AskForNumber(
+            //       "Your turn [" + color + "] " +
+            //       players[currentPlayerIndex] + " !",
+            //       1, 9
+            //      );
+            //}
+
+
+
             Console.ReadLine();
             currentPlayerIndex = currentPlayerIndex == 0 ? 1 : 0;
             StartGame();
