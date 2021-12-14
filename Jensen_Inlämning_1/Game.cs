@@ -13,8 +13,8 @@ namespace Jensen_Inlämning_1
         int currentPlayerIndex = 0;
         public Game()
         {
-            AskForPlayerName();
-            StartGame();
+            //AskForPlayerName();
+            //StartGame();
         }
 
         public void AskForPlayerName()
@@ -28,7 +28,20 @@ namespace Jensen_Inlämning_1
             //board.PlacePiece('X', 1, 1);
             //board.PlacePiece('0', 2, 2);
             board.Render();
+
             char color = currentPlayerIndex == 0 ? 'X' : 'O';
+            if (board.checkForWinner(color))
+            {
+                Console.WriteLine("Congratulation " + players[currentPlayerIndex] + " You won");
+
+                Console.WriteLine("Are you going to play exit if so write Yes or Y");
+                
+                if(Console.ReadLine()=="Yes"|| Console.ReadLine() == "Y")
+                {
+                    return;
+                }
+                //return;
+            }
             int position;
             do
             {
@@ -39,23 +52,17 @@ namespace Jensen_Inlämning_1
                    );
             } while (board.PlacePiece(color, position)!=true);
 
-            //while ((board.PlacePiece(color, position)) == true)
-            //{
-            //    position = Helpers.AskForNumber(
-            //       "Your turn [" + color + "] " +
-            //       players[currentPlayerIndex] + " !",
-            //       1, 9
-            //      );
-            //}
-            if (board.checkForWinner(color))
-            {
-                Console.WriteLine("Congratulation "+players[currentPlayerIndex]+" You won");
-                return;
-            }
+           
             if (board.CheckForTie())
             {
                 Console.WriteLine("Game is Draw. Try for the next time");
-                return;
+                Console.WriteLine("Are you going to play exit if so write Yes or Y");
+
+                if (Console.ReadLine() == "Yes" || Console.ReadLine() == "Y")
+                {
+                    return;
+                }
+                //return;
             }
 
             currentPlayerIndex = currentPlayerIndex == 0 ? 1 : 0;
