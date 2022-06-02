@@ -11,6 +11,9 @@ namespace Jensen_Inlämning_1
         public Board board = new Board();
         string[] players = new string[2];
         int currentPlayerIndex = 0;
+        //int currentPlayerPoint = 0;
+        int player_1_point = 0;
+        int player_2_point = 0;
         public Game()
         {
             //AskForPlayerName();
@@ -33,6 +36,16 @@ namespace Jensen_Inlämning_1
             if (board.checkForWinner(color))
             {
                 Console.WriteLine("Congratulation " + players[currentPlayerIndex] + " You won");
+                if (currentPlayerIndex == 0)
+                {
+                    player_1_point++;
+                    Console.WriteLine(players[currentPlayerIndex] + " Your point is "+ player_1_point);
+                }
+                else
+                {
+                    player_2_point++;
+                    Console.WriteLine(players[currentPlayerIndex] + " Your point is " + player_2_point);
+                }
 
                 Console.WriteLine("Are you going to play exit if so write Yes or Y");
                 
@@ -48,7 +61,7 @@ namespace Jensen_Inlämning_1
                 position = Helpers.AskForNumber(
                     "Your turn [" + color + "] " +
                     players[currentPlayerIndex] + " !",
-                    1, 9
+                    1, 49
                    );
             } while (board.PlacePiece(color, position)!=true);
 
@@ -56,7 +69,7 @@ namespace Jensen_Inlämning_1
             if (board.CheckForTie())
             {
                 Console.WriteLine("Game is Draw. Try for the next time");
-                Console.WriteLine("Are you going to play exit if so write Yes or Y");
+                Console.WriteLine("Are you going to exit if so write Yes or Y");
 
                 if (Console.ReadLine() == "Yes" || Console.ReadLine() == "Y")
                 {

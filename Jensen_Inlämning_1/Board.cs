@@ -7,17 +7,21 @@ namespace Jensen_Inlämning_1
     public class Board
     {
         char[,] matrix = {
-            {' ',' ',' ' },
-            {' ',' ',' ' },
-            {' ',' ',' ' }
+            {' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' '},
+            {' ',' ',' ',' ',' ',' ',' '}
         };
         
 
         public bool PlacePiece(char color,int position)
         {
             position--;
-            int row = position / 3;
-            int column = position % 3;
+            int row = position / 7;
+            int column = position % 7;
             
             if(matrix[row,column] =='X' || matrix[row, column] == 'O')
             {
@@ -29,7 +33,7 @@ namespace Jensen_Inlämning_1
 
         public void Render()
         {
-            Console.WriteLine("----------------");
+            Console.WriteLine("-----------------------------");
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 for (int column = 0; column < matrix.GetLength(1); column++)
@@ -39,12 +43,72 @@ namespace Jensen_Inlämning_1
                 //Console.WriteLine("|\n----------------");
                 Console.WriteLine("|");
                 
-                Console.WriteLine("----------------");
+                Console.WriteLine("-----------------------------");
             }
             
         }
 
         public bool checkForWinner(char color)
+        {
+            //verticle win check
+            for(int row=0;row<matrix.GetLength(0)-3;row++)
+            {
+                for (int column = 0; column < matrix.GetLength(1); column++)
+                {
+                    if (matrix[row, column] == color &&
+                        matrix[row + 1, column] == color && matrix[row + 2, column] == color 
+                        && matrix[row+3,column]==color)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            //Horizontal win check
+            for (int row = 0; row < matrix.GetLength(0); row++)
+            {
+                for (int column = 0; column < matrix.GetLength(1)-3; column++)
+                {
+                    if (matrix[row, column] == color &&
+                        matrix[row, column+1] == color && matrix[row, column+2] == color
+                        && matrix[row, column+3] == color)
+                    {
+                        return true;
+                    }
+                }
+            }
+            //Top-left win check
+            for (int row = 0; row < matrix.GetLength(0)-3; row++)
+            {
+                for (int column = 0; column < matrix.GetLength(1) - 3; column++)
+                {
+                    if (matrix[row, column] == color &&
+                        matrix[row+1, column + 1] == color && matrix[row+2, column + 2] == color
+                        && matrix[row+3, column + 3] == color)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            //Top-right win check
+            for (int row = 0; row < matrix.GetLength(0) - 3; row++)
+            {
+                for (int column = 3; column < matrix.GetLength(1); column++)
+                {
+                    if (matrix[row, column] == color &&
+                        matrix[row + 1, column - 1] == color && matrix[row + 2, column - 2] == color
+                        && matrix[row + 3, column - 3] == color)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        /*public bool checkForWinner(char color)
         {
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
@@ -80,7 +144,7 @@ namespace Jensen_Inlämning_1
             }
             
             return false;
-        }
+        }*/
 
         public bool CheckBoardIsFull()
         {

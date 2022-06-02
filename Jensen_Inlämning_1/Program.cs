@@ -22,20 +22,28 @@ namespace Jensen_Inlämning_1
             
             game.AskForPlayerName();
            
-            game.StartGame();
+            //game.StartGame();
 
-            
 
-            
-            //int Gamecount = 0;
-            //while (Gamecount < NumberOfGames)
-            //{
-            //    game.StartGame();
-            //    Gamecount++;
-            //    Console.WriteLine(Gamecount + " is done");
-            //    Console.WriteLine("Next round is started");
 
-            //}
+
+            int Gamecount = 0;
+            while (Gamecount <= NumberOfGames)
+            {
+                game.StartGame();
+                Gamecount++;
+                Console.WriteLine(Gamecount + " is done");
+                if (Gamecount < NumberOfGames)
+                {
+                    Console.WriteLine("Next round is started");
+                }
+                else
+                {
+                    break;
+                }
+                
+
+            }
 
 
 
